@@ -1,6 +1,7 @@
 from selenium import webdriver
 import time
 from cred import user,password
+from random import random 
 
 class Bot():
     def __init__(self):
@@ -46,10 +47,19 @@ class Bot():
         time.sleep(0.5)
 
     def auto(self):
+        lcount=0
+        rcount=0
         while True:
             time.sleep(1)
             try:
-                self.swipe_right()
+                rand=random()
+                if rand<0.001:
+                    self.swipe_right()
+                    rcount+=1
+                else:
+                    self.swipe_left()
+                    lcount+=1
+                print('r:{} , l:{} '.format(rcount,lcount))
             except Exception:
                 try:
                     self.click('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
